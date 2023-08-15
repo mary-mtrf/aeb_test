@@ -1,0 +1,17 @@
+.filter {
+  opacity: 0;
+  color: #cbcbcb;
+  transition: 0.4s;
+  &:hover {
+    opacity: 1;
+  }
+
+  &__command {
+    display: inline-flex;
+    gap: 8px;
+    padding: 8px;
+  }
+}
+.active {
+  opacity: 1;
+}

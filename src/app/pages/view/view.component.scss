@@ -1,0 +1,127 @@
+.loading {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(30px);
+}
+
+.wrapper {
+  position: relative;
+  background: white;
+  display: flex;
+  margin-bottom: 100px;
+  flex-direction: column;
+  width: 600px;
+  height: 1px;
+  flex-grow: 1;
+  padding: 16px;
+}
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.header {
+  display: inline-flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 0 16px;
+  position: relative;
+  height: 85px;
+  &__back {
+    position: absolute;
+    transform: translateX(-55px);
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  &__gender {
+    color: red;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__avatar {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    transform: translateY(-50px);
+    border-radius: 300px;
+    border: 5px solid #eee;
+    overflow: hidden;
+    visibility: visible;
+
+    &_status {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+
+      > .alive {
+        border: 2px solid green;
+        border-color: green;
+        transform: translateY(40px);
+        backdrop-filter: blur(5px);
+        color: green;
+      }
+
+      > .dead {
+        border: 2px solid green;
+        color: red;
+        backdrop-filter: blur(5px);
+        transform: translateY(30px) rotate(-5deg);
+        border-color: red;
+      }
+
+      > .unknown {
+        border: 2px solid green;
+        color: black;
+        transform: translateY(30px) rotate(-5deg);
+        backdrop-filter: blur(5px);
+        border-color: black;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &__name {
+    font-size: 2em;
+    font-weight: bold;
+    padding-top: 10px;
+  }
+}
+
+.episodes {
+  height: 100%;
+  overflow-y: auto;
+
+  &__title {
+    margin-bottom: 16px;
+  }
+}
+
+.attr {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.first-episode {
+  margin-bottom: 16px;
+}

@@ -1,0 +1,22 @@
+.header {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  &__main {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(60px);
+    padding: 32px;
+    border-radius: 0 0 32px 32px;
+  }
+}
+
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

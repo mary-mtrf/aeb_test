@@ -1,0 +1,42 @@
+fragment CharacterInfo on Character {
+  name
+  id
+  status
+  species
+  type
+  gender
+  image
+  created
+  episode {
+    name
+  }
+  origin {
+    name
+  }
+  location {
+    name
+  }
+}
+
+query GetAllCharacter($page: Int) {
+  characters(page: $page) {
+    info {
+      count
+    }
+    results {
+      ...CharacterInfo
+    }
+  }
+  location(id: 1) {
+    id
+  }
+  episodesByIds(ids: [1, 2]) {
+    id
+  }
+}
+
+query GetCharacter($id: ID!) {
+  character(id: $id) {
+    ...CharacterInfo
+  }
+}

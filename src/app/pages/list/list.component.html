@@ -1,0 +1,98 @@
+<div class="wrapper">
+  <div class="paginator">
+    <mat-paginator
+      #paginator
+      class="demo-paginator"
+      (page)="handlePageEvent($event)"
+      [length]="characterCount$ | async"
+      [showFirstLastButtons]="showFirstLastButtons"
+      [hidePageSize]="true"
+      [pageSize]="18"
+      [pageIndex]="page$ | async"
+    >
+    </mat-paginator>
+  </div>
+  <div class="table-container">
+    <div *ngIf="isLoading$ | async" class="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <table
+      mat-table
+      [dataSource]="dataSource$"
+      matSort
+    >
+      <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+      <ng-container matColumnDef="image">
+        <th
+          class="text-center"
+          mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+        >
+          Аватарка
+        </th>
+        <td mat-cell *matCellDef="let element" style="width: 100px">
+          <img class="image" [src]="element.image" />
+        </td>
+      </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Имя
+          <app-table-filter
+            key="name"
+            (onChangeFilter)="onChangeFilter($event)"
+          ></app-table-filter>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.name }}
+        </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Пол
+          <app-table-filter
+            key="gender"
+            (onChangeFilter)="onChangeFilter($event)"
+          ></app-table-filter>
+        </th>
+        <td class="gender" mat-cell *matCellDef="let element">
+          <mat-icon [svgIcon]="getGender(element.gender)"></mat-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="created">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          style="width: 100px"
+        >
+          Дата Создания
+          <app-table-filter
+            key="created"
+            (onChangeFilter)="onChangeFilter($event)"
+          ></app-table-filter>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.created | date : "shortDate" }}
+        </td>
+      </ng-container>
+      <!-- Symbol Column -->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr
+        mat-row
+        matRipple
+        [matRippleRadius]="30"
+        class="row"
+        (click)="onSelectCharacter(row)"
+        *matRowDef="let row; columns: displayedColumns"
+      ></tr>
+    </table>
+  </div>
+</div>

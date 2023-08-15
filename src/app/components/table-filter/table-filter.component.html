@@ -1,0 +1,25 @@
+<div
+  class="filter"
+  [ngClass]="{ active: control.value }"
+  (click)="onFilter($event)"
+>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon svgIcon="filter">filter</mat-icon>
+  </button>
+</div>
+<mat-menu #menu="matMenu">
+  <div class="filter__search" (click)="$event.stopPropagation()">
+    <mat-form-field appearance="fill">
+      <mat-label>Фильтр</mat-label>
+      <input matInput placeholder="" [formControl]="control" />
+    </mat-form-field>
+  </div>
+  <div class="filter__command">
+    <button mat-flat-button color="warn" (click)="onToggleMenu()">
+      Закрыть
+    </button>
+    <button color="primary" mat-flat-button (click)="onAcceptFilter()">
+      Поиск
+    </button>
+  </div>
+</mat-menu>

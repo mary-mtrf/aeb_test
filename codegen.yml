@@ -1,0 +1,19 @@
+overwrite: true
+generates:
+  # where to generate file
+  ./src/app/graphql/graphql-custom-backend.service.ts:
+    schema:
+      # where the server lives
+      - https://rickandmortyapi.com/graphql
+    documents:
+      # where are our queries / mutations, etc.
+      - src/app/graphql/graphql-custom-backend/*.graphql
+    # necessary to properly generate types
+    plugins:
+      - typescript
+      - typescript-resolvers
+      - typescript-apollo-angular
+      - typescript-operations
+    config:
+      # used to disable lint rule: ts(4114) (override)
+      addExplicitOverride: true

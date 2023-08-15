@@ -1,0 +1,50 @@
+<div class="wrapper">
+  <div class="loading" *ngIf="isLoadingCharacter$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+  <ng-container *ngIf="character$ | async as character">
+    <div class="header">
+      <div class="header__back">
+        <button mat-icon-button (click)="onBackToList()">
+          <mat-icon svgIcon="back">back</mat-icon>
+        </button>
+      </div>
+      <div class="header__avatar">
+        <div class="header__avatar_status">
+          <div [ngClass]="getStatusStyle(character?.status)">
+            {{ character?.status }}
+          </div>
+        </div>
+
+        <img [src]="character?.image" />
+      </div>
+      <div class="header__name">Имя: {{ character?.name }}</div>
+    </div>
+    <div class="attr">
+      <div class="header__gender">
+        Пол: <mat-icon [svgIcon]="getGender(character?.gender)"></mat-icon>
+      </div>
+      <div>Раса: {{ character?.species }}</div>
+    </div>
+
+    <h2 class="episodes__title">Эпизоды</h2>
+
+    <div class="episodes">
+      <div class="first-episode">
+        <b>Первое появление:</b> {{ character?.episode?.[0]?.name }}
+      </div>
+
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Эпизоды </mat-panel-title>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </mat-expansion-panel-header>
+          <div *ngFor="let episode of character?.episode" class="status">
+            {{ episode?.name }}
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </ng-container>
+</div>
